@@ -1,0 +1,7 @@
+{
+  "name": "Pong",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
