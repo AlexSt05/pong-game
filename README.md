@@ -8,11 +8,15 @@ This is a react-native project used to build a React Canvas Application for iOS 
 
 ## how to run it
 
-1. install dependencies
+1. change into project directory
+    ```bash
+    cd pong-game
+    ```
+2. install dependencies
     ```bash
     npm install
     ```
-2. run server
+3. run server
     ```bash
     ionic serve
     ```
