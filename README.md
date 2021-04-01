@@ -16,7 +16,7 @@ This is a react-native project used to build a React Canvas Application for iOS 
     ```bash
     npm install
     ```
-3. run server
+3. run web server (for development)
     ```bash
     ionic serve
     ```
