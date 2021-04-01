@@ -8,9 +8,9 @@ This is a react-native project used to build a React Canvas Application for iOS 
 
 ## how to run it
 
-1. install dependencies
+install dependencies
     npm install
-2. run server
+run server
     ionic serve
 
 > Note: to run the iOS or Android version of the game follow these instructions: https://ionicframework.com/docs/developing/ios
