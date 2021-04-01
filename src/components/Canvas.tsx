@@ -30,7 +30,7 @@ const Canvas : React.FC = props => {
     if (y<0){
       yspeed= 10
     }
-        }
+  }
 
   
   useEffect(() => {
@@ -56,7 +56,7 @@ const Canvas : React.FC = props => {
     }
   }, [draw])
   
-  return <canvas style={{width:"100%",height:"400px"}} ref={canvasRef} {...props}/>
+  return <canvas style={{width:"100%",maxHeight:"600px", minHeight: "400px"}} ref={canvasRef} {...props}/>
 }
 
 export default Canvas
