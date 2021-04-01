@@ -9,11 +9,11 @@ This is a react-native project used to build a React Canvas Application for iOS 
 ## how to run it
 
 1. install dependencies
-    ```javascript
+    ```bash
     npm install
     ```
 2. run server
-    ```javascript
+    ```bash
     ionic serve
     ```
 
