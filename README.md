@@ -22,3 +22,5 @@ This is a react-native project used to build a React Canvas Application for iOS 
     ```
 
 > Note: to run the iOS or Android version of the game follow these instructions: https://ionicframework.com/docs/developing/ios
+
+Hey man!
