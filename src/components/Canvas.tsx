@@ -10,14 +10,17 @@ const Canvas : React.FC = props => {
   const r = 20
   const s = 0
   const end = 2*Math.PI
+  
   const draw = (ctx:CanvasRenderingContext2D, frameCount:number) => {
-    ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
+    ctx.fillStyle = '#1DF9CD'
+    ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height)
     ctx.fillStyle = '#000000'
     ctx.beginPath()
-    ctx.arc(x, y,  r, s, end)
+    ctx.ellipse(x, y, r, r, 0, s, end)
     ctx.fill()
     x+=xspeed
     y+=yspeed
+    
     if (x>ctx.canvas.width){
       xspeed=-10
     }
@@ -32,7 +35,11 @@ const Canvas : React.FC = props => {
     }
   }
 
-  
+  const getScreenSize = () => {
+      //window.innerWidth
+      //window.innerHeight
+  };
+
   useEffect(() => {
     
     const canvas = canvasRef.current
@@ -56,7 +63,7 @@ const Canvas : React.FC = props => {
     }
   }, [draw])
   
-  return <canvas style={{width:"100%",maxHeight:"600px", minHeight: "400px"}} ref={canvasRef} {...props}/>
+  return <canvas width='300' height='600'  ref={canvasRef} {...props}/>
 }
 
 export default Canvas
