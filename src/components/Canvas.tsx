@@ -1,3 +1,4 @@
+import { createGesture } from '@ionic/react'
 import React, { useRef, useEffect } from 'react'
 
 const Canvas : React.FC = props => {
@@ -46,7 +47,6 @@ const Canvas : React.FC = props => {
     const context = canvas?.getContext('2d')
     let frameCount = 0
     let animationFrameId: number;
-    
     //Our draw came here
     const render = () => {
       frameCount++
@@ -62,8 +62,35 @@ const Canvas : React.FC = props => {
       window.cancelAnimationFrame(animationFrameId)
     }
   }, [draw])
+
+  useEffect(() => {
+
+    let game = document.querySelectorAll("#main-game");
+    const can = game[0];
+    const gesture = createGesture({
+      el: can,
+      direction: 'y',
+      disableScroll: true,
+      gestureName: "my-swipe",
+      
+      onStart: event => {
+        console.log("onStart", event);
+      },
+      onMove: event => {
+        console.log("detltaY", event.deltaY);
+        alert('You swiped!')
+      }
+    });
+    gesture.enable(true);
+  });
   
-  return <canvas width='300' height='600'  ref={canvasRef} {...props}/>
+  return <canvas 
+    id='main-game'
+    width='500' 
+    height='800'  
+    ref={canvasRef} 
+    {...props}
+  />
 }
 
 export default Canvas
