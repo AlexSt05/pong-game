@@ -1,7 +1,8 @@
 import React, { useRef, useEffect } from 'react'
+import { useWindowSize } from './WindowSize'
 
 const Canvas : React.FC = props => {
-  
+  const windowSize = useWindowSize()
   const canvasRef = useRef<HTMLCanvasElement>(null)
   let x = 20
   let xspeed = 10
@@ -12,7 +13,7 @@ const Canvas : React.FC = props => {
   const end = 2*Math.PI
   
   const draw = (ctx:CanvasRenderingContext2D, frameCount:number) => {
-    ctx.fillStyle = '#1DF9CD'
+    ctx.fillStyle = '#999999'
     ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height)
     ctx.fillStyle = '#000000'
     ctx.beginPath()
@@ -38,6 +39,8 @@ const Canvas : React.FC = props => {
   const getScreenSize = () => {
       //window.innerWidth
       //window.innerHeight
+      return window.innerWidth
+      
   };
 
   useEffect(() => {
@@ -63,7 +66,7 @@ const Canvas : React.FC = props => {
     }
   }, [draw])
   
-  return <canvas width='300' height='600'  ref={canvasRef} {...props}/>
+  return <canvas width={windowSize.width} height={windowSize.height * 0.8}  ref={canvasRef} {...props}/>
 }
 
 export default Canvas
