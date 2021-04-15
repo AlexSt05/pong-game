@@ -1,48 +1,24 @@
 import { createGesture } from '@ionic/react'
-import React, { useRef, useEffect } from 'react'
+import React, { useRef, useEffect, useState } from 'react'
+import { useWindowSize } from './WindowSize'
+import { draw, onSwipeUp } from './Draw';
 
 const Canvas : React.FC = props => {
-  
+
+  const windowSize = useWindowSize();
   const canvasRef = useRef<HTMLCanvasElement>(null)
-  let x = 20
-  let xspeed = 10
-  let yspeed = 10
-  let y = 20
-  const r = 20
-  const s = 0
-  const end = 2*Math.PI
-  
-  const draw = (ctx:CanvasRenderingContext2D, frameCount:number) => {
-    ctx.fillStyle = '#1DF9CD'
-    ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height)
-    ctx.fillStyle = '#000000'
-    ctx.beginPath()
-    ctx.ellipse(x, y, r, r, 0, s, end)
-    ctx.fill()
-    x+=xspeed
-    y+=yspeed
-    
-    if (x>ctx.canvas.width){
-      xspeed=-10
-    }
-    if (x<0){
-      xspeed= 10
-    }
-    if (y>ctx.canvas.height){
-      yspeed=-10
-    }
-    if (y<0){
-      yspeed= 10
-    }
-  }
-
-  const getScreenSize = () => {
-      //window.innerWidth
-      //window.innerHeight
+  const canvasData = {
+    x: 20,
+    xspeed: 10,
+    yspeed: 10,
+    y: 20,
+    r: 20,
+    s: 0,
+    end: 2*Math.PI
   };
-
+  
   useEffect(() => {
-    
+    //set up our animation canvas
     const canvas = canvasRef.current
     const context = canvas?.getContext('2d')
     let frameCount = 0
@@ -51,7 +27,7 @@ const Canvas : React.FC = props => {
     const render = () => {
       frameCount++
       if (context){
-        draw(context, frameCount)
+        draw(context, frameCount, canvasData)
         animationFrameId = window.requestAnimationFrame(render)
       }
        
@@ -75,22 +51,25 @@ const Canvas : React.FC = props => {
       
       onStart: event => {
         console.log("onStart", event);
+        onSwipeUp(canvasData);
       },
       onMove: event => {
         console.log("detltaY", event.deltaY);
-        alert('You swiped!')
       }
     });
     gesture.enable(true);
-  });
+  }, []);
+
   
-  return <canvas 
-    id='main-game'
-    width='500' 
-    height='800'  
-    ref={canvasRef} 
-    {...props}
-  />
+  
+  return <div>
+    <canvas 
+      id='main-game'
+      width={windowSize.width} 
+      height={windowSize.height * 0.8}
+      ref={canvasRef} 
+    />
+  </div>;
 }
 
 export default Canvas
