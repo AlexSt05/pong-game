@@ -14,7 +14,8 @@ const Canvas : React.FC = props => {
     y: 20,
     r: 20,
     s: 0,
-    end: 2*Math.PI
+    end: 2*Math.PI,
+    mult: 1.2,
   };
   
   useEffect(() => {
@@ -54,7 +55,7 @@ const Canvas : React.FC = props => {
         onSwipeUp(canvasData);
       },
       onMove: event => {
-        console.log("detltaY", event.deltaY);
+        console.log("deltaY", event.deltaY);
       }
     });
     gesture.enable(true);

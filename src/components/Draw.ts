@@ -16,19 +16,21 @@ export const draw = (
     canvasData.y+=canvasData.yspeed
     
     if (canvasData.x + canvasData.r >ctx.canvas.width){
-        canvasData.xspeed=-10
+        canvasData.xspeed*=-1
     }
     if (canvasData.x - canvasData.r <0){
-        canvasData.xspeed= 10
+        canvasData.xspeed*=-1
     }
     if (canvasData.y + canvasData.r >ctx.canvas.height){
-        canvasData.yspeed=-10
+        canvasData.yspeed*=-1
     }
     if (canvasData.y - canvasData.r <0){
-        canvasData.yspeed= 10
+        canvasData.yspeed*=-1
     }
 };
 
 export const onSwipeUp = (canvasData: any) => {
-    canvasData.yspeed *= -1;
+    canvasData.yspeed=-12;
+    
+    
 };
