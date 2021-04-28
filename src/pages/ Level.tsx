@@ -21,7 +21,7 @@ const Level: React.FC = () => {
         </IonToolbar>
       </IonHeader>
 
-      <IonContent fullscreen>
+      <IonContent scrollY={false} scrollX={false} fullscreen>
         <IonHeader collapse="condense">
           <IonToolbar>
             <IonTitle size="large">Level {level}</IonTitle>

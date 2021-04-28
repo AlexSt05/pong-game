@@ -1,6 +1,6 @@
 {
-  "appId": "io.ionic.starter",
-  "appName": "Pong",
+  "appId": "com.smartcode.app.SwipeDestoyer",
+  "appName": "SwipeDestroyer",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "build",
