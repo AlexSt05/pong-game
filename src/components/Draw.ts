@@ -1,3 +1,4 @@
+const LEVEL1_MAX = 50;
 /*
 * This file defines our draw function
 */
@@ -12,6 +13,7 @@ export const draw = (
     ctx.beginPath()
     ctx.ellipse(canvasData.x, canvasData.y, canvasData.r, canvasData.r, 0, canvasData.s, canvasData.end)
     ctx.fill()
+    drawProgressBar(ctx, canvasData, canvasData.numSwipes/LEVEL1_MAX);
     canvasData.x+=canvasData.xspeed
     canvasData.y+=canvasData.yspeed
     
@@ -29,8 +31,39 @@ export const draw = (
     }
 };
 
-export const onSwipeUp = (canvasData: any) => {
-    canvasData.yspeed=-12;
+const drawProgressBar = (ctx:CanvasRenderingContext2D, 
+    canvasData: any, percentage: number) => {
+    ctx.fillStyle = '#000000'
+    ctx.fillRect(10, 10, 150, 10)
+    ctx.fillStyle = '#FF0000';
+    ctx.fillRect(10, 10, 150*percentage, 10)
+};
+
+const nearBall = (canvasData: any, event: any): boolean => {
+    const fingerX = event.startX;
+    const fingerY = event.startY;
+    const ballX = canvasData.x;
+    const ballY = canvasData.y;
+    const nearBall = (Math.abs(fingerX - ballX) < 150 
+    && Math.abs(fingerY - ballY) < 150);
     
-    
+    console.log(nearBall);
+    return nearBall;
+}
+
+const ballMovesTooFast = (canvasData: any) => {
+    return canvasData.yspeed > 25;
+}
+
+export const onSwipeUp = (canvasData: any, event: any) => {
+    if (nearBall(canvasData, event)) {
+        const change = 20 * event.velocityY;
+        console.log("test: " + change);
+        canvasData.yspeed= change;
+        canvasData.numSwipes += 1;
+    }
+
+    if (ballMovesTooFast(canvasData)) {
+        canvasData.yspeed = 10;
+    }
 };

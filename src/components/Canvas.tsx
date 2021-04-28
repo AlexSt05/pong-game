@@ -16,6 +16,7 @@ const Canvas : React.FC = props => {
     s: 0,
     end: 2*Math.PI,
     mult: 1.2,
+    numSwipes: 0
   };
   
   useEffect(() => {
@@ -51,11 +52,11 @@ const Canvas : React.FC = props => {
       gestureName: "my-swipe",
       
       onStart: event => {
-        console.log("onStart", event);
-        onSwipeUp(canvasData);
+        //console.log("onStart", event);
+        onSwipeUp(canvasData, event);
       },
       onMove: event => {
-        console.log("deltaY", event.deltaY);
+        //console.log("deltaY", event.deltaY);
       }
     });
     gesture.enable(true);
@@ -67,7 +68,7 @@ const Canvas : React.FC = props => {
     <canvas 
       id='main-game'
       width={windowSize.width} 
-      height={windowSize.height * 0.8}
+      height={windowSize.height * 0.9}
       ref={canvasRef} 
     />
   </div>;
