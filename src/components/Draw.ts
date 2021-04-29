@@ -13,7 +13,13 @@ export const draw = (
     ctx.beginPath()
     ctx.ellipse(canvasData.x, canvasData.y, canvasData.r, canvasData.r, 0, canvasData.s, canvasData.end)
     ctx.fill()
+    const progress = canvasData.numSwipes/LEVEL1_MAX;
     drawProgressBar(ctx, canvasData, canvasData.numSwipes/LEVEL1_MAX);
+    if(progress > 1){
+        history.push("/level/1")
+    }
+
+
     canvasData.x+=canvasData.xspeed
     canvasData.y+=canvasData.yspeed
     
