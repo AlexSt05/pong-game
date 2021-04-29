@@ -45,9 +45,9 @@ const drawProgressBar = (ctx:CanvasRenderingContext2D,
     ctx.fillRect(10, 10, 150*percentage, 10)
 };
 
-const nearBall = (canvasData: any, event: any): boolean => {
-    const fingerX = event.startX;
-    const fingerY = event.startY;
+const nearBall = (canvasData: any, swipeEvent: any): boolean => {
+    const fingerX = swipeEvent.startX;
+    const fingerY = swipeEvent.startY;
     const ballX = canvasData.x;
     const ballY = canvasData.y;
     const nearBall = (Math.abs(fingerX - ballX) < 150 
@@ -61,9 +61,9 @@ const ballMovesTooFast = (canvasData: any) => {
     return canvasData.yspeed > 25;
 }
 
-export const onSwipeUp = (canvasData: any, event: any) => {
-    if (nearBall(canvasData, event)) {
-        const change = 20 * event.velocityY;
+export const onSwipeUp = (canvasData: any, swipeEvent: any) => {
+    if (nearBall(canvasData, swipeEvent)) {
+        const change = 20 * swipeEvent.velocityY;
         console.log("test: " + change);
         canvasData.yspeed= change;
         canvasData.numSwipes += 1;
