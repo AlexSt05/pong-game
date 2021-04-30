@@ -1,11 +1,12 @@
-const LEVEL1_MAX = 50;
+const LEVEL1_MAX = 1;
 /*
 * This file defines our draw function
 */
 export const draw = (
     ctx:CanvasRenderingContext2D, 
     frameCount:number, 
-    canvasData: any
+    canvasData: any,
+    history: any
 ) => {
     ctx.fillStyle = '#1DF9CD'
     ctx.fillRect(0, 0, ctx.canvas.width, ctx.canvas.height)
@@ -16,7 +17,7 @@ export const draw = (
     const progress = canvasData.numSwipes/LEVEL1_MAX;
     drawProgressBar(ctx, canvasData, canvasData.numSwipes/LEVEL1_MAX);
     if(progress > 1){
-        history.push("/level/1")
+        history.push("/level/2")
     }
 
 

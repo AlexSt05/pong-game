@@ -2,12 +2,17 @@ import { createGesture } from '@ionic/react'
 import React, { useRef, useEffect, useState } from 'react'
 import { useWindowSize } from './WindowSize'
 import { draw, onSwipeUp } from './Draw';
+import { RouteComponentProps } from 'react-router';
 
-const Canvas : React.FC = props => {
+interface ContainerProps extends RouteComponentProps<{}> {
+  level: string;
+}
+
+const Canvas : React.FC<ContainerProps> = ({ history, level }) => {
 
   const windowSize = useWindowSize();
   const canvasRef = useRef<HTMLCanvasElement>(null)
-  const canvasData = {
+  const [canvasData, setCanvasData] = useState({
     x: 20,
     xspeed: 10,
     yspeed: 10,
@@ -17,7 +22,16 @@ const Canvas : React.FC = props => {
     end: 2*Math.PI,
     mult: 1.2,
     numSwipes: 0
-  };
+  });
+
+  useEffect(() => {
+    console.log(level, canvasData.numSwipes);
+    setCanvasData({
+      ...canvasData,
+      numSwipes: 0,
+      r: 10
+    })
+  }, [level]);
   
   useEffect(() => {
     //set up our animation canvas
@@ -29,7 +43,7 @@ const Canvas : React.FC = props => {
     const render = () => {
       frameCount++
       if (context){
-        draw(context, frameCount, canvasData)
+        draw(context, frameCount, canvasData, history)
         animationFrameId = window.requestAnimationFrame(render)
       }
        
