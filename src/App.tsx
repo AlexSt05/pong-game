@@ -31,8 +31,7 @@ const App: React.FC = () => {
         <IonSplitPane contentId="main">
           <Menu />
           <IonRouterOutlet id="main">
-            <Route path="/Level/:level" exact={true}>
-              <Level />
+            <Route path="/Level/:level" exact={true} component={Level}>
             </Route>
             <Route path="/" exact={true} component={Page}>
               
